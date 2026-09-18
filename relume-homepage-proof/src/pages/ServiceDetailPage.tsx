@@ -3,6 +3,14 @@ import { Card } from "@/components/ui/card";
 import type { ServiceDetail } from "@/content";
 import { CALENDLY, services } from "@/content";
 
+function medalIcon(name: string) {
+  const label = name.toLowerCase();
+  if (label.includes("gold")) return "/images/icons/gold-medal.svg";
+  if (label.includes("silver")) return "/images/icons/silver-medal.svg";
+  if (label.includes("bronze")) return "/images/icons/bronze-medal.svg";
+  return null;
+}
+
 export function ServiceDetailPage({ page }: { page: ServiceDetail }) {
   const icon = services.find((service) => service.href === page.path)?.icon;
 
@@ -43,9 +51,14 @@ export function ServiceDetailPage({ page }: { page: ServiceDetail }) {
           <h2 className="mb-4 text-h2 font-bold">{page.offeringTitle}</h2>
           <p className="mb-10 max-w-2xl text-white/80">{page.offeringIntro}</p>
           <div className="grid gap-6 md:grid-cols-3">
-            {page.offerings.map((offering) => (
+            {page.offerings.map((offering) => {
+              const medal = medalIcon(offering.name);
+              return (
               <Card key={offering.name} className="border-white/30 bg-transparent p-6 text-white">
-                <h3 className="mb-3 text-h5 font-bold">{offering.name}</h3>
+                {medal ? (
+                  <img src={medal} alt="" className="mb-4 h-16 w-16 object-contain" />
+                ) : null}
+                <h3 className="mb-3 text-h5 font-bold text-white">{offering.name}</h3>
                 <p className="mb-4 text-white/80">{offering.intro}</p>
                 {offering.items ? (
                   <ul className="list-disc space-y-2 pl-5 text-small text-white/80">
@@ -55,7 +68,8 @@ export function ServiceDetailPage({ page }: { page: ServiceDetail }) {
                   </ul>
                 ) : null}
               </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
