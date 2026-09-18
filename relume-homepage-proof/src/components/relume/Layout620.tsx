@@ -11,7 +11,7 @@ type ListItem = {
 
 type Props = {
   tagline: string;
-  heading: string;
+  heading: ReactNode;
   description: string;
   listItems: ListItem[];
   buttons: ButtonProps[];

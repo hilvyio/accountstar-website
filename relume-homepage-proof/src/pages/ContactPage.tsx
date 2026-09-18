@@ -1,4 +1,5 @@
 import { Header81 } from "@/components/relume/Header81";
+import { Gold } from "@/components/Gold";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CALENDLY, EMAIL, WHATSAPP } from "@/content";
@@ -72,7 +73,11 @@ export function ContactPage() {
     <>
       <Header81
         compact
-        heading="Let's talk about what you need"
+        heading={
+          <>
+            Let's talk about <Gold>what you need</Gold>
+          </>
+        }
         description="Choose the contact option that suits you. Tell us a little about your business, organisation or event and we will help you find the right next step."
         buttons={[
           { title: "Book a free chat", url: CALENDLY, variant: "gold" },

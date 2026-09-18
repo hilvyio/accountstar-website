@@ -1,7 +1,28 @@
 import { Header81 } from "@/components/relume/Header81";
+import { Gold } from "@/components/Gold";
 import { Card } from "@/components/ui/card";
 import type { ServiceDetail } from "@/content";
 import { CALENDLY, services } from "@/content";
+
+function highlightTitle(title: string) {
+  const rules: [RegExp, string][] = [
+    [/accounting services$/i, "accounting services"],
+    [/^non-profit accounting$/i, "accounting"],
+    [/^speaking engagements$/i, "engagements"],
+  ];
+  for (const [pattern, phrase] of rules) {
+    if (!pattern.test(title)) continue;
+    const idx = title.toLowerCase().lastIndexOf(phrase.toLowerCase());
+    if (idx < 0) continue;
+    return (
+      <>
+        {title.slice(0, idx)}
+        <Gold>{title.slice(idx)}</Gold>
+      </>
+    );
+  }
+  return title;
+}
 
 function medalIcon(name: string) {
   const label = name.toLowerCase();
@@ -18,7 +39,7 @@ export function ServiceDetailPage({ page }: { page: ServiceDetail }) {
     <>
       <Header81
         compact
-        heading={page.title}
+        heading={highlightTitle(page.title)}
         description={page.description}
         buttons={[
           { title: "Contact us", url: "/contact-us" },

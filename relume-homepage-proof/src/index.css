@@ -24,6 +24,19 @@ h6 {
   color: #7d5ba6;
 }
 
+h1 .text-brand-gold,
+h2 .text-brand-gold,
+h3 .text-brand-gold,
+h4 .text-brand-gold,
+h5 .text-brand-gold,
+h6 .text-brand-gold {
+  color: #aca33d;
+}
+
+.bg-brand-500 .text-brand-gold {
+  color: #e4d36a;
+}
+
 .bg-brand-500 h1,
 .bg-brand-500 h2,
 .bg-brand-500 h3,

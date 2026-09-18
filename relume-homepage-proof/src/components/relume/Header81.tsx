@@ -9,7 +9,7 @@ type ImageProps = {
 
 type Props = {
   image: ImageProps;
-  heading: string;
+  heading: ReactNode;
   description: string;
   buttons: ButtonProps[];
   compact?: boolean;

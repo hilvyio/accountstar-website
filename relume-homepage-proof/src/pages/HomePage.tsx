@@ -1,4 +1,5 @@
 import { ChevronRight } from "relume-icons";
+import { Gold } from "@/components/Gold";
 import { Header81 } from "@/components/relume/Header81";
 import { Logo1 } from "@/components/relume/Logo1";
 import { Layout620 } from "@/components/relume/Layout620";
@@ -9,7 +10,11 @@ export function HomePage() {
   return (
     <>
       <Header81
-        heading="Helping you take control of your business finances and taxes"
+        heading={
+          <>
+            Helping you take control of your <Gold>business finances and taxes</Gold>
+          </>
+        }
         description="Professional and affordable accounting and tax services for sole traders, limited companies, charities and CICs."
         buttons={[
           { title: "Accounting Services", url: "/services" },
@@ -32,7 +37,11 @@ export function HomePage() {
       <Layout620
         id="services"
         tagline=""
-        heading="Solutions for every business need."
+        heading={
+          <>
+            Solutions for every <Gold>business need.</Gold>
+          </>
+        }
         description="Professional accounting support for the way you work."
         listItems={services.slice(0, 3).map((service) => ({
           icon: (
@@ -55,7 +64,11 @@ export function HomePage() {
       />
       <Layout659
         tagline="I am here to help you understand your numbers"
-        heading="Accounting support that makes business feel simpler."
+        heading={
+          <>
+            Accounting support that makes business feel <Gold>simpler.</Gold>
+          </>
+        }
         description="Accountstar was formed to serve small businesses and new entrepreneurs from diverse backgrounds. We provide affordable, professional accounting services and make tax obligations and statutory requirements easy to understand."
         image={{
           src: "/images/stella-office.jpg",

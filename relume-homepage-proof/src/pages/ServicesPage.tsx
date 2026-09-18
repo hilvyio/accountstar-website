@@ -1,4 +1,5 @@
 import { ChevronRight } from "relume-icons";
+import { Gold } from "@/components/Gold";
 import { Header81 } from "@/components/relume/Header81";
 import { Layout620 } from "@/components/relume/Layout620";
 import { Layout659 } from "@/components/relume/Layout659";
@@ -9,7 +10,11 @@ export function ServicesPage() {
     <>
       <Header81
         compact
-        heading="Accounting services for small businesses, individuals and start-ups"
+        heading={
+          <>
+            <Gold>Accounting services</Gold> for small businesses, individuals and start-ups
+          </>
+        }
         description="Affordable, professional support designed to make your finances and obligations easier to understand."
         buttons={[
           { title: "Contact us", url: "/contact-us" },

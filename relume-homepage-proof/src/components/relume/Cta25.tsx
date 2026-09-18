@@ -1,8 +1,8 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type Props = {
-  heading: string;
+  heading: ReactNode;
   description: string;
   buttons: ButtonProps[];
 };

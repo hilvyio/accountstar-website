@@ -1,4 +1,5 @@
 import { Header81 } from "@/components/relume/Header81";
+import { Gold } from "@/components/Gold";
 import { Layout659 } from "@/components/relume/Layout659";
 import { Layout620 } from "@/components/relume/Layout620";
 import { MISSION } from "@/content";
@@ -8,7 +9,11 @@ export function AboutPage() {
     <>
       <Header81
         compact
-        heading="I am Stella Ezeogu, a Chartered Certified Accountant"
+        heading={
+          <>
+            I am Stella Ezeogu, a <Gold>Chartered Certified Accountant</Gold>
+          </>
+        }
         description="I am here to help you understand your numbers and make confident financial decisions."
         buttons={[
           { title: "Meet the team", url: "/team" },

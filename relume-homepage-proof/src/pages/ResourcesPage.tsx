@@ -15,7 +15,9 @@ export function ResourcesPage() {
       <section className="px-[5%] py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="mb-2 text-small font-semibold text-brand-500">Free download</p>
-          <h2 className="mb-5 text-h2 font-bold">Financial plan template</h2>
+          <h2 className="mb-5 text-h2 font-bold">
+            Financial plan <span className="text-brand-gold">template</span>
+          </h2>
           <p className="mb-8 text-medium">
             Build a clearer view of your goals, costs and next steps with our free financial
             planning template. Email us to request your copy and the Accountstar team will send it

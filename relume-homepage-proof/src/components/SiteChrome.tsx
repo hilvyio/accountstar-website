@@ -52,7 +52,11 @@ export function SiteChrome({ children }: Props) {
       {children}
       {showCta ? (
         <Cta25
-          heading="Need something personalised?"
+          heading={
+            <>
+              Need something <span className="text-brand-gold">personalised?</span>
+            </>
+          }
           description="Tell us what you need and we will help you find the right accounting support."
           buttons={[
             { title: "Book a free chat", url: CALENDLY, variant: "gold" },

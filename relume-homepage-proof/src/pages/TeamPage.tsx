@@ -1,4 +1,5 @@
 import { Header81 } from "@/components/relume/Header81";
+import { Gold } from "@/components/Gold";
 import { team } from "@/content";
 
 export function TeamPage() {
@@ -6,7 +7,11 @@ export function TeamPage() {
     <>
       <Header81
         compact
-        heading="Meet the team"
+        heading={
+          <>
+            Meet the <Gold>team</Gold>
+          </>
+        }
         description="A highly experienced and efficient team ready to assist small businesses with day-to-day accounting and tax issues."
         buttons={[{ title: "Work with us", url: "/contact-us" }]}
         image={{ src: "/images/team-stella.png", alt: "Stella Ezeogu" }}

@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight } from "relume-icons";
@@ -10,7 +10,7 @@ type ImageProps = {
 
 type Props = {
   tagline: string;
-  heading: string;
+  heading: ReactNode;
   description: string;
   buttons: ButtonProps[];
   image: ImageProps;
