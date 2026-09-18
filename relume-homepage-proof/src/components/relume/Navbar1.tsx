@@ -37,11 +37,11 @@ export const Navbar1 = (props: Navbar1Props) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <section className="z-[999] flex w-full items-center border-b border-brand-500/30 bg-scheme-background min-[992px]:min-h-18 min-[992px]:px-[5%]">
+    <section className="z-[999] flex w-full items-center border-b border-brand-500/30 bg-scheme-background min-[992px]:min-h-20 min-[992px]:px-[5%]">
       <div className="size-full min-[992px]:flex min-[992px]:items-center min-[992px]:justify-between">
-        <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 min-[992px]:min-h-full min-[992px]:px-0">
-          <a href={logo.url} className="inline-flex max-w-[10rem]">
-            <img src={logo.src} alt={logo.alt} className="h-10 w-auto" />
+        <div className="flex min-h-20 items-center justify-between px-[5%] min-[992px]:min-h-full min-[992px]:px-0">
+          <a href={logo.url} className="inline-flex max-w-[16rem]">
+            <img src={logo.src} alt={logo.alt} className="h-14 w-auto md:h-16" />
           </a>
           <button
             className="-mr-2 flex size-12 flex-col items-center justify-center min-[992px]:hidden"

@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container grid gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1.2fr_1.2fr]">
         <div className="max-w-sm">
           <a href="/" className="mb-5 inline-block bg-white p-2" aria-label="Accountstar home">
-            <img src="/images/accountstar-logo.png" alt="" className="h-10 w-auto" />
+            <img src="/images/accountstar-logo.png" alt="" className="h-14 w-auto" />
           </a>
           <p className="text-white/80">
             Accountstar was formed to serve small businesses and new entrepreneurs from diverse
