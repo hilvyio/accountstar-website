@@ -8,14 +8,17 @@ export function AboutPage() {
     <>
       <Header81
         compact
-        imageFit="contain"
         heading="I am Stella Ezeogu, a Chartered Certified Accountant"
         description="I am here to help you understand your numbers and make confident financial decisions."
         buttons={[
           { title: "Meet the team", url: "/team" },
           { title: "Contact us", url: "/contact-us", variant: "gold" },
         ]}
-        image={{ src: "/images/stella-about.jpg", alt: "Stella Ezeogu, founder of Accountstar" }}
+        image={{
+          src: "/images/stella-about.jpg",
+          alt: "Stella Ezeogu, founder of Accountstar",
+          objectPosition: "center 18%",
+        }}
         extra={
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <img src="/images/top-50-badge.png" alt="Top 50 Women in Accounting" className="h-28 w-auto" />
