@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type ImageProps = {
@@ -13,12 +13,14 @@ type Props = {
   description: string;
   buttons: ButtonProps[];
   compact?: boolean;
+  extra?: ReactNode;
+  imageFit?: "cover" | "contain";
 };
 
 export type Header81Props = ComponentPropsWithoutRef<"section"> & Partial<Props>;
 
 export const Header81 = (props: Header81Props) => {
-  const { heading, description, buttons, image, compact, className, ...rest } = {
+  const { heading, description, buttons, image, compact, extra, imageFit, className, ...rest } = {
     ...Header81Defaults,
     ...props,
   };
@@ -59,19 +61,26 @@ export const Header81 = (props: Header81Props) => {
             ))}
           </div>
         ) : null}
+        {extra}
       </div>
       <div
         className={
           compact
-            ? "relative aspect-[4/5] w-full md:aspect-auto md:min-h-[36rem] lg:min-h-[42rem]"
+            ? imageFit === "contain"
+              ? "relative flex min-h-[28rem] items-center justify-center bg-[#f6f1ea] md:min-h-[36rem]"
+              : "relative aspect-[4/5] w-full md:aspect-auto md:min-h-[36rem] lg:min-h-[42rem]"
             : "relative min-h-[28rem] w-full lg:h-[calc(100svh-6rem)] lg:min-h-full"
         }
       >
         <img
           src={image.src}
           alt={image.alt}
-          className="absolute inset-0 size-full object-cover"
-          style={{ objectPosition: image.objectPosition ?? "center top" }}
+          className={
+            imageFit === "contain"
+              ? "max-h-[36rem] w-full object-contain p-4 md:max-h-[42rem]"
+              : "absolute inset-0 size-full object-cover"
+          }
+          style={imageFit === "contain" ? undefined : { objectPosition: image.objectPosition ?? "center top" }}
         />
       </div>
     </section>
@@ -88,4 +97,6 @@ export const Header81Defaults: Props = {
     alt: "Relume placeholder image",
   },
   compact: false,
+  extra: null,
+  imageFit: "cover",
 };

@@ -8,6 +8,7 @@ export function AboutPage() {
     <>
       <Header81
         compact
+        imageFit="contain"
         heading="I am Stella Ezeogu, a Chartered Certified Accountant"
         description="I am here to help you understand your numbers and make confident financial decisions."
         buttons={[
@@ -15,6 +16,12 @@ export function AboutPage() {
           { title: "Contact us", url: "/contact-us", variant: "gold" },
         ]}
         image={{ src: "/images/stella-about.jpg", alt: "Stella Ezeogu, founder of Accountstar" }}
+        extra={
+          <div className="mt-8 flex flex-wrap items-center gap-6">
+            <img src="/images/top-50-badge.png" alt="Top 50 Women in Accounting" className="h-28 w-auto" />
+            <img src="/images/acca-logo.png" alt="ACCA" className="h-24 w-auto" />
+          </div>
+        }
       />
       <Layout659
         tagline="Our mission"
@@ -68,13 +75,15 @@ export function AboutPage() {
         buttons={[]}
       />
       <section className="px-[5%] py-12 md:py-16">
-        <div className="container flex flex-wrap items-center gap-8">
+        <div className="container flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-md">
             <p className="mb-2 text-small font-semibold text-brand-500">Professional recognition</p>
             <h2 className="text-h4 font-bold">Qualified, experienced and recognised</h2>
           </div>
-          <img src="/images/acca-logo.png" alt="ACCA" className="h-20 w-auto" />
-          <img src="/images/top-50-badge.png" alt="Top 50 Women in Accounting" className="h-24 w-auto" />
+          <div className="flex flex-wrap items-center gap-8">
+            <img src="/images/top-50-badge.png" alt="Top 50 Women in Accounting" className="h-32 w-auto" />
+            <img src="/images/acca-logo.png" alt="ACCA" className="h-28 w-auto" />
+          </div>
         </div>
       </section>
     </>
