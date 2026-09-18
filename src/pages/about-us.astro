@@ -1,0 +1,117 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import ContactCta from "@/components/Sections/ContactCta.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Img from "@/components/Media/Img.astro";
+import stellaAbout from "@/assets/images/stella-about.jpg";
+import accaLogo from "@/assets/images/acca-logo.png";
+import top50Badge from "@/assets/images/top-50-badge.png";
+import { MISSION } from "@/data/site.ts";
+
+const values = [
+  {
+    heading: "Professionalism",
+    text: "Every client benefits from the expertise of the whole firm. Our growth has been driven by referrals from people who know and trust our work.",
+  },
+  {
+    heading: "Passion for service",
+    text: "We hold ourselves to high standards and offer insightful advice that helps clients make informed financial decisions.",
+  },
+  {
+    heading: "Commitment",
+    text: "We combine experience, energy and personal attention so every client has a reliable and accessible financial advocate.",
+  },
+];
+---
+
+<Layout
+  title="About"
+  description="Meet Stella Ezeogu, the ACCA-qualified accountant and financial educator behind Accountstar."
+>
+  <PageHero
+    eyebrow="About Accountstar"
+    title="I am Stella Ezeogu, a Chartered Certified Accountant"
+    description="I am here to help you understand your numbers and make confident financial decisions."
+    image={stellaAbout}
+    imageAlt="Stella Ezeogu, founder of Accountstar"
+    primaryLabel="Meet the team"
+    primaryHref="/team"
+  />
+  <Section>
+    <ContentWrapper variant="columns">
+      <div>
+        <Eyebrow>Our mission</Eyebrow>
+        <Heading tag="h2" variant="h2" maxWidth={15}>
+          Accessible expertise for growing businesses
+        </Heading>
+      </div>
+      <div slot="column2">
+        <Paragraph variant="large">{MISSION}</Paragraph>
+        <Paragraph>
+          Accountstar was formed to serve small businesses and new entrepreneurs
+          from diverse backgrounds. We provide affordable, professional
+          accounting and explain tax obligations and statutory requirements
+          without jargon.
+        </Paragraph>
+        <Paragraph>
+          Our highly skilled team brings a wealth of experience and is on hand
+          to answer questions as your organisation grows.
+        </Paragraph>
+      </div>
+    </ContentWrapper>
+  </Section>
+  <Section theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow>What guides us</Eyebrow>
+      <Heading tag="h2" variant="h2">Our core values</Heading>
+    </ContentWrapper>
+    <Grid small={3}>
+      {
+        values.map((value) => (
+          <Card
+            heading={value.heading}
+            headingTag="h3"
+            text={value.text}
+            theme="invert"
+          />
+        ))
+      }
+    </Grid>
+  </Section>
+  <Section paddingTop="small" paddingBottom="small">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow>Professional recognition</Eyebrow>
+        <Heading tag="h2" variant="h4" maxWidth={20}>
+          Qualified, experienced and recognised
+        </Heading>
+      </div>
+      <div slot="column2" class="flex-horizontal-wrap gap-5">
+        <Img
+          src={accaLogo}
+          alt="ACCA"
+          width={110}
+          height={110}
+          variant="densities"
+          transparent={true}
+        />
+        <Img
+          src={top50Badge}
+          alt="Top 50 Women in Accounting"
+          width={90}
+          height={110}
+          variant="densities"
+          transparent={true}
+        />
+      </div>
+    </ContentWrapper>
+  </Section>
+  <ContactCta />
+</Layout>

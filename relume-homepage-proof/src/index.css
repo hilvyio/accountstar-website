@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #1f1b22;
+  background: #ffffff;
+  font-family: Inter, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #7d5ba6;
+}
+
+.bg-brand-500 h1,
+.bg-brand-500 h2,
+.bg-brand-500 h3,
+.bg-brand-500 h4,
+.bg-brand-500 h5,
+.bg-brand-500 h6,
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6 {
+  color: #ffffff;
+}

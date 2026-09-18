@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import Testimonials from "@/components/Sections/Testimonials.astro";
+import ContactCta from "@/components/Sections/ContactCta.astro";
+import reviewsHero from "@/assets/images/reviews-hero.png";
+---
+
+<Layout
+  title="Reviews"
+  description="Read how Accountstar has helped business owners and organisations with accounting, tax and financial planning."
+>
+  <PageHero
+    eyebrow="Client feedback"
+    title="Reviews from customers"
+    description="See how clear advice, careful attention and practical support have helped Accountstar clients."
+    image={reviewsHero}
+    imageAlt="Stella Ezeogu"
+    primaryLabel="Work with Accountstar"
+    primaryHref="/contact-us"
+  />
+  <Testimonials />
+  <ContactCta />
+</Layout>

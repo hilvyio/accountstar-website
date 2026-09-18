@@ -1,0 +1,189 @@
+---
+import Img from "@/components/Media/Img.astro";
+import logo from "@/assets/images/accountstar-logo.png";
+import { SITE_NAME } from "@/consts.ts";
+
+interface Props {
+  render?: boolean;
+  overlap?: boolean;
+}
+
+const { render = true } = Astro.props;
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const current = (href: string) => (path === href ? "page" : undefined);
+---
+
+{render && (
+  <>
+    <aside class="availability_notice">
+      <p>
+        We are currently not accepting new clients, but will reopen soon.
+        <a href="mailto:admin@accountstar.co.uk?subject=Accountstar%20waitlist">Email us to join the waitlist.</a>
+      </p>
+    </aside>
+    <header class="nav_wrap">
+      <div class="nav_inner">
+        <a class="nav_logo" href="/" aria-label={`${SITE_NAME} home`}>
+          <Img src={logo} alt="" width={220} height={77} transparent={true} loading="eager" />
+        </a>
+
+        <button class="nav_toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span><span></span>
+        </button>
+
+        <nav class="nav_menu" id="nav-menu" aria-label="Main navigation">
+          <ul class="nav_links">
+            <li><a href="/" aria-current={current("/")}>Home</a></li>
+            <li class="nav_has-submenu">
+              <details>
+                <summary>Services <span aria-hidden="true">+</span></summary>
+                <ul class="nav_submenu">
+                  <li><a href="/services" aria-current={current("/services")}>All services</a></li>
+                  <li><a href="/self-employed" aria-current={current("/self-employed")}>Self-employed</a></li>
+                  <li><a href="/limited-company-accounting" aria-current={current("/limited-company-accounting")}>Limited companies</a></li>
+                  <li><a href="/non-profit-accounting" aria-current={current("/non-profit-accounting")}>Non-profits</a></li>
+                  <li><a href="/speaking-engagements" aria-current={current("/speaking-engagements")}>Speaking engagements</a></li>
+                </ul>
+              </details>
+            </li>
+            <li class="nav_has-submenu">
+              <details>
+                <summary>About <span aria-hidden="true">+</span></summary>
+                <ul class="nav_submenu">
+                  <li><a href="/about-us" aria-current={current("/about-us")}>About us</a></li>
+                  <li><a href="/team" aria-current={current("/team")}>Meet the team</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="/resources" aria-current={current("/resources")}>Resources</a></li>
+            <li><a href="/reviews" aria-current={current("/reviews")}>Reviews</a></li>
+            <li><a href="/contact-us" aria-current={current("/contact-us")}>Contact us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </>
+)}
+
+<script>
+  const header = document.querySelector<HTMLElement>(".nav_wrap");
+  const toggle = header?.querySelector<HTMLButtonElement>(".nav_toggle");
+  const menu = header?.querySelector<HTMLElement>(".nav_menu");
+
+  if (header && toggle && menu) {
+    const setOpen = (open: boolean) => {
+      header.classList.toggle("open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (event) => event.key === "Escape" && setOpen(false));
+    window.matchMedia("(width >= 64rem)").addEventListener("change", (event) => event.matches && setOpen(false));
+  }
+</script>
+
+<style is:global>
+  @layer components {
+    .availability_notice {
+      display: flex;
+      justify-content: center;
+      padding: .55rem var(--site-margin);
+      background: var(--brand-500);
+      color: white;
+      font-size: .82rem;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .availability_notice p { max-width: var(--max-width-main); }
+    .availability_notice a { margin-left: .3em; font-weight: 700; text-decoration: underline; }
+
+    .nav_wrap {
+      position: relative;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding-inline: var(--site-margin);
+      background: white;
+      color: var(--dark-900);
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav_inner {
+      display: flex;
+      width: 100%;
+      max-width: var(--max-width-main);
+      min-height: var(--nav-height);
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .nav_logo { display: flex; width: clamp(9rem, 15vw, 12rem); flex: none; align-items: center; }
+    .nav_logo .image { background: transparent; }
+
+    .nav_toggle {
+      display: grid;
+      width: 3rem;
+      height: 3rem;
+      place-content: center;
+      gap: .45rem;
+    }
+
+    .nav_toggle span { display: block; width: 1.6rem; height: 1px; background: currentColor; transition: transform .2s ease; }
+    .nav_wrap.open .nav_toggle span:first-child { transform: translateY(.23rem) rotate(45deg); }
+    .nav_wrap.open .nav_toggle span:last-child { transform: translateY(-.23rem) rotate(-45deg); }
+
+    .nav_menu {
+      position: absolute;
+      top: 100%;
+      inset-inline: 0;
+      display: none;
+      padding: var(--space-4) var(--site-margin) var(--space-6);
+      background: white;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 1rem 2.5rem rgb(31 27 34 / 10%);
+    }
+
+    .nav_wrap.open .nav_menu { display: block; }
+    .nav_links { display: flex; flex-direction: column; gap: .25rem; }
+    .nav_links > li > a,
+    .nav_links summary { display: flex; justify-content: space-between; padding: .75rem 0; font-size: .98rem; cursor: pointer; }
+    .nav_links a[aria-current="page"] { color: var(--brand-500); font-weight: 700; }
+    .nav_links summary::-webkit-details-marker { display: none; }
+    .nav_links summary { list-style: none; }
+    .nav_links details[open] summary span { transform: rotate(45deg); }
+    .nav_submenu { display: grid; gap: .1rem; padding: 0 0 .75rem 1rem; }
+    .nav_submenu a { display: block; padding: .45rem 0; color: var(--dark-700); font-size: .92rem; }
+
+    @media (width >= 64rem) {
+      .nav_toggle { display: none; }
+      .nav_menu { position: static; display: block; padding: 0; border: 0; box-shadow: none; }
+      .nav_links { flex-direction: row; align-items: center; gap: clamp(1.15rem, 2.2vw, 2.25rem); }
+      .nav_links > li > a,
+      .nav_links summary { padding: 2.35rem 0; white-space: nowrap; }
+      .nav_links summary span { margin-left: .45rem; color: var(--brand-500); }
+      .nav_has-submenu { position: relative; }
+      .nav_submenu {
+        position: absolute;
+        top: calc(100% - .5rem);
+        left: -1.25rem;
+        z-index: 5;
+        display: none;
+        width: max-content;
+        min-width: 13rem;
+        padding: .75rem;
+        background: white;
+        border: 1px solid #eee;
+        box-shadow: 0 .75rem 2rem rgb(31 27 34 / 12%);
+      }
+      .nav_submenu a { padding: .55rem .75rem; }
+      .nav_has-submenu:hover .nav_submenu,
+      .nav_has-submenu:focus-within .nav_submenu,
+      .nav_has-submenu details[open] .nav_submenu { display: grid; }
+      .nav_links a:hover,
+      .nav_links summary:hover { color: var(--brand-500); }
+    }
+  }
+</style>

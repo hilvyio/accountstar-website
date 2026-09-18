@@ -1,0 +1,51 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import ServiceCards from "@/components/Sections/ServiceCards.astro";
+import ContactCta from "@/components/Sections/ContactCta.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Img from "@/components/Media/Img.astro";
+import stellaServices from "@/assets/images/stella-services.png";
+import stellaOffice from "@/assets/images/stella-office.jpg";
+import { MISSION } from "@/data/site.ts";
+---
+
+<Layout
+  title="Services"
+  description="Accounting services for self-employed professionals, limited companies, charities, CICs and organisations seeking a finance speaker."
+>
+  <PageHero
+    eyebrow="Practical support"
+    title="Accounting services for small businesses, individuals and start-ups"
+    description="Affordable, professional support designed to make your finances and obligations easier to understand."
+    image={stellaServices}
+    imageAlt="Stella Ezeogu of Accountstar"
+    primaryLabel="Contact us"
+    primaryHref="/contact-us"
+  />
+  <ServiceCards
+    heading="Choose the support that fits"
+    intro="From annual filing to regular financial oversight, every service is shaped around your current needs and future plans."
+  />
+  <Section theme="dark">
+    <ContentWrapper variant="contain">
+      <Eyebrow>Personal, accessible advice</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={16}>
+        We'd love to help you work through your accounts
+      </Heading>
+      <Paragraph variant="large" maxWidth={44}>{MISSION}</Paragraph>
+      <Img
+        slot="column2"
+        src={stellaOffice}
+        alt="Stella Ezeogu at work"
+        width={1000}
+        height={900}
+      />
+    </ContentWrapper>
+  </Section>
+  <ContactCta />
+</Layout>

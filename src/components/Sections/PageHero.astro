@@ -1,0 +1,120 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Button from "@/components/Button.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Img from "@/components/Media/Img.astro";
+
+type Props = HTMLAttributes<"section"> & {
+  render?: boolean;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+};
+
+const {
+  render = true,
+  eyebrow,
+  title,
+  description,
+  image,
+  imageAlt,
+  primaryLabel = "Book a free chat",
+  primaryHref = "/contact-us",
+  secondaryLabel,
+  secondaryHref,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const layoutProps = image
+  ? ({ variant: "contain" } as const)
+  : ({ variant: "stack", centered: true } as const);
+---
+
+{
+  render && (
+    <Section
+      theme="light"
+      paddingTop="small"
+      paddingBottom="small"
+      class:list={["page-hero_wrap", className]}
+      {...rest}
+    >
+      <ContentWrapper {...layoutProps} class="page-hero_layout">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <Heading tag="h1" variant="h1" maxWidth={16}>
+          {title}
+        </Heading>
+        <Paragraph variant="large" maxWidth={48}>
+          {description}
+        </Paragraph>
+        <ButtonWrapper>
+          <Button element="link" href={primaryHref}>
+            {primaryLabel}
+          </Button>
+          <Button
+            render={Boolean(secondaryLabel && secondaryHref)}
+            element="link"
+            href={secondaryHref}
+            emphasis="secondary"
+          >
+            {secondaryLabel}
+          </Button>
+        </ButtonWrapper>
+        {image && (
+          <Img
+            slot="column2"
+            src={image}
+            alt={imageAlt}
+            width={1200}
+            height={1320}
+            loading="eager"
+            fetchPriority="high"
+          />
+        )}
+      </ContentWrapper>
+    </Section>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .page-hero_wrap {
+      overflow: clip;
+    }
+
+    .page-hero_layout.contain {
+      background: linear-gradient(135deg, var(--light-200), var(--light-100));
+      border: var(--border-width) solid var(--border);
+      box-shadow: 0 1.5rem 5rem
+        color-mix(in srgb, var(--dark-900) 8%, transparent);
+
+      & > :first-child {
+        padding: var(--section-space-small);
+      }
+
+      & > :last-child {
+        min-height: 28rem;
+      }
+
+      & .image {
+        object-position: center 25%;
+      }
+    }
+
+    .page-hero_layout:not(.contain) {
+      padding-block: var(--section-space-small);
+    }
+  }
+</style>

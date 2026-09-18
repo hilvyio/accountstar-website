@@ -1,0 +1,21 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import TeamProfiles from "@/components/Sections/TeamProfiles.astro";
+import ContactCta from "@/components/Sections/ContactCta.astro";
+---
+
+<Layout
+  title="Meet the team"
+  description="Meet the experienced Accountstar team supporting small businesses with day-to-day accounting and tax issues."
+>
+  <PageHero
+    eyebrow="People you can rely on"
+    title="Meet the team"
+    description="A highly experienced and efficient team ready to assist small businesses with day-to-day accounting and tax issues."
+    primaryLabel="Work with us"
+    primaryHref="/contact-us"
+  />
+  <TeamProfiles />
+  <ContactCta />
+</Layout>

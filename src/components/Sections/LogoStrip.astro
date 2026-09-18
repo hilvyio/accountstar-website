@@ -1,0 +1,82 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Img from "@/components/Media/Img.astro";
+import gymKitchen from "@/assets/images/client-gym-kitchen.png";
+import kessies from "@/assets/images/client-kessies.jpg";
+import sociallyInspired from "@/assets/images/client-socially-inspired.png";
+import stn from "@/assets/images/client-stn.png";
+
+interface Props {
+  render?: boolean;
+}
+
+const { render = true } = Astro.props;
+const logos = [
+  { src: gymKitchen, alt: "Gym Kitchen" },
+  { src: kessies, alt: "Kessies Consulting" },
+  { src: sociallyInspired, alt: "Socially Inspired" },
+  { src: stn, alt: "STN" },
+];
+---
+
+{
+  render && (
+    <Section
+      paddingTop="even"
+      paddingBottom="even"
+      gap="5"
+      class="logo-strip_wrap"
+    >
+      <Heading tag="h2" variant="h6">Currently working with</Heading>
+      <div class="logo-strip_list">
+        {logos.map((logo) => (
+          <Img
+            src={logo.src}
+            alt={logo.alt}
+            width={180}
+            height={72}
+            variant="densities"
+            transparent={true}
+          />
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .logo-strip_wrap {
+      background: white;
+      border-bottom: var(--border-width) solid #eee;
+    }
+
+    .logo-strip_wrap .container {
+      align-items: center;
+      text-align: center;
+    }
+
+    .logo-strip_list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-6) var(--section-space-small);
+      width: 100%;
+
+      & .image {
+        width: 100%;
+        max-width: 9.5rem;
+        max-height: 4rem;
+        margin-inline: auto;
+        object-fit: contain;
+        opacity: 1;
+      }
+
+      @media (width >= 48rem) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  }
+</style>

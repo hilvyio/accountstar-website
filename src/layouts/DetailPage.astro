@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import DetailSections from "@/components/Sections/DetailSections.astro";
+import ContactCta from "@/components/Sections/ContactCta.astro";
+import type { DetailPage } from "@/data/site.ts";
+
+interface Props {
+  page: DetailPage;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={page.title} description={page.description}>
+  <PageHero
+    eyebrow={page.eyebrow}
+    title={page.title}
+    description={page.description}
+    image={page.image}
+    imageAlt={page.imageAlt}
+    primaryLabel="Enquire now"
+    primaryHref="/contact-us"
+    secondaryLabel="View all services"
+    secondaryHref="/services"
+  />
+  <DetailSections
+    blocks={page.blocks}
+    offeringTitle={page.offeringTitle}
+    offeringIntro={page.offeringIntro}
+    offerings={page.offerings}
+  />
+  <ContactCta heading="Need some advice?" />
+</Layout>

@@ -1,0 +1,88 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Button from "@/components/Button.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import { CONTACT } from "@/data/site.ts";
+
+interface Props {
+  render?: boolean;
+}
+
+const { render = true } = Astro.props;
+const options = [
+  {
+    eyebrow: "15 minutes",
+    title: "Book a free chat",
+    text: "Choose a convenient time for a quick conversation with Stella about what you need.",
+    label: "Choose a time",
+    href: CONTACT.calendly,
+    external: true,
+  },
+  {
+    eyebrow: "Email",
+    title: "Send an enquiry",
+    text: "Tell us about your business, organisation or event and we will reply with the next steps.",
+    label: "Email Accountstar",
+    href: CONTACT.emailHref,
+    external: false,
+  },
+  {
+    eyebrow: "WhatsApp",
+    title: "Message us",
+    text: "Prefer a short message? Start a WhatsApp conversation with the Accountstar team.",
+    label: "Open WhatsApp",
+    href: CONTACT.whatsapp,
+    external: true,
+  },
+];
+---
+
+{
+  render && (
+    <Section class="contact-options_wrap">
+      <Grid small={2} large={3}>
+        {options.map((option) => (
+          <article class="contact-options_card">
+            <Eyebrow>{option.eyebrow}</Eyebrow>
+            <Heading tag="h2" variant="h4">
+              {option.title}
+            </Heading>
+            <Paragraph>{option.text}</Paragraph>
+            <ButtonWrapper>
+              <Button
+                element="link"
+                href={option.href}
+                target={option.external ? "_blank" : undefined}
+                rel={option.external ? "noreferrer" : undefined}
+              >
+                {option.label}
+              </Button>
+            </ButtonWrapper>
+          </article>
+        ))}
+      </Grid>
+    </Section>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .contact-options_card {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6);
+      background-color: var(--background-2);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-main);
+    }
+
+    .contact-options_card .button-wrapper:last-child {
+      margin-top: auto;
+      padding-top: var(--space-6);
+    }
+  }
+</style>

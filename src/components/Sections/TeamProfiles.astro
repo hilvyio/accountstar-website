@@ -1,0 +1,96 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Img from "@/components/Media/Img.astro";
+import { team } from "@/data/site.ts";
+
+interface Props {
+  render?: boolean;
+}
+
+const { render = true } = Astro.props;
+---
+
+{
+  render && (
+    <div class="team-profiles_wrap">
+      {team.map((member, index) => (
+        <Section
+          theme={index % 2 === 1 ? "dark" : "light"}
+          paddingTop="small"
+          paddingBottom="small"
+        >
+          <ContentWrapper
+            variant="contain"
+            reverse={index % 2 === 1}
+            class="team-profiles_layout"
+          >
+            <Eyebrow>{member.role}</Eyebrow>
+            <Heading tag="h2" variant="h3">
+              {member.name}
+            </Heading>
+            {member.bio.map((paragraph) => (
+              <Paragraph>{paragraph}</Paragraph>
+            ))}
+            <div class="team-profiles_specialties">
+              <strong class="text-style-small">Specialist areas</strong>
+              <ul class="text-style-small">
+                {member.specialties.map((specialty) => (
+                  <li>{specialty}</li>
+                ))}
+              </ul>
+            </div>
+            <Img
+              slot="column2"
+              src={member.image}
+              alt={member.alt}
+              width={900}
+              height={900}
+            />
+          </ContentWrapper>
+        </Section>
+      ))}
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .team-profiles_layout > :first-child {
+      gap: var(--space-3);
+    }
+
+    .team-profiles_layout > :last-child {
+      min-height: 30rem;
+      background-color: var(--purple-100);
+    }
+
+    .team-profiles_layout > :last-child .image {
+      object-position: center top;
+    }
+
+    .team-profiles_specialties {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: var(--border-width) solid var(--border);
+
+      & ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      & li {
+        padding: var(--space-1) var(--space-2);
+        background-color: var(--background-3);
+        border-radius: var(--radius-round);
+      }
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import { testimonials } from "@/data/site.ts";
+
+interface Props {
+  render?: boolean;
+  limit?: number;
+}
+
+const { render = true, limit } = Astro.props;
+const visibleTestimonials = limit ? testimonials.slice(0, limit) : testimonials;
+---
+
+{
+  render && (
+    <Section class="testimonials_wrap">
+      <ContentWrapper centered={true}>
+        <Eyebrow>Client stories</Eyebrow>
+        <Heading tag="h2" variant="h2" maxWidth={15}>
+          Trusted by growing businesses
+        </Heading>
+        <Paragraph variant="large" maxWidth={42}>
+          Long-term relationships, practical results and advice clients can
+          understand.
+        </Paragraph>
+      </ContentWrapper>
+      <Grid small={2}>
+        {visibleTestimonials.map((testimonial) => (
+          <figure class="testimonials_card">
+            <blockquote class="text-style-large">
+              “{testimonial.quote}”
+            </blockquote>
+            <figcaption>
+              <strong>{testimonial.name}</strong>
+              <span class="text-style-small">{testimonial.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </Grid>
+    </Section>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .testimonials_card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-6);
+      min-height: 22rem;
+      padding: var(--space-6);
+      background-color: var(--background-2);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-main);
+
+      & blockquote {
+        color: var(--text);
+      }
+
+      & figcaption {
+        display: flex;
+        flex-direction: column;
+        padding-top: var(--space-4);
+        border-top: var(--border-width) solid var(--border);
+      }
+
+      & figcaption span {
+        color: var(--text-2);
+      }
+    }
+  }
+</style>

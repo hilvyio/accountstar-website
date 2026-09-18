@@ -1,0 +1,69 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import { services } from "@/data/site.ts";
+import selfEmployedIcon from "@/assets/icons/service-self-employed.svg";
+import companyIcon from "@/assets/icons/service-company.svg";
+
+interface Props {
+  render?: boolean;
+  heading?: string;
+  intro?: string;
+  limit?: number;
+}
+
+const {
+  render = true,
+  heading = "Solutions for every business need.",
+  intro = "Professional accounting support for the way you work.",
+  limit = 3,
+} = Astro.props;
+
+const icons = [selfEmployedIcon, companyIcon, companyIcon];
+const visibleServices = services.slice(0, limit);
+---
+
+{render && (
+  <Section theme="dark" class="service-cards_wrap">
+    <div class="service-cards_heading">
+      <Heading tag="h2" variant="h2" maxWidth={17}>{heading}</Heading>
+      <Paragraph>{intro}</Paragraph>
+    </div>
+    <div class="service-cards_grid">
+      {visibleServices.map((service, index) => (
+        <article class="service-card">
+          <img src={icons[index].src} alt="" width="64" height="64" />
+          <h3>{service.title}</h3>
+          <p>{service.summary}</p>
+          <a href={service.href}>Learn more <span aria-hidden="true">→</span></a>
+        </article>
+      ))}
+    </div>
+  </Section>
+)}
+
+<style is:global>
+  @layer components {
+    .service-cards_wrap { background: var(--brand-500); color: white; }
+    .service-cards_heading { display: grid; gap: 1rem; }
+    .service-cards_heading p { max-width: 34rem; color: rgb(255 255 255 / 78%); }
+    .service-cards_grid { display: grid; gap: 1.5rem; }
+    .service-card {
+      display: flex;
+      min-height: 25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: clamp(2rem, 4vw, 3rem);
+      background: white;
+      color: var(--dark-900);
+    }
+    .service-card img { width: 4rem; height: 4rem; margin-bottom: auto; object-fit: contain; }
+    .service-card h3 { max-width: 11em; margin-top: 3rem; font-size: clamp(1.65rem, 2.7vw, 2.25rem); font-weight: 500; }
+    .service-card p { margin-top: 1.25rem; color: var(--dark-700); }
+    .service-card a { margin-top: 1.5rem; padding-bottom: .25rem; border-bottom: 1px solid var(--brand-500); color: var(--brand-500); font-weight: 600; }
+    .service-card a span { display: inline-block; margin-left: .4rem; transition: transform .2s ease; }
+    .service-card a:hover span { transform: translateX(.25rem); }
+    @media (width >= 64rem) { .service-cards_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { CONTACT, MISSION } from "@/data/site.ts";
+---
+
+<section class="social-contact_wrap">
+  <div class="social-contact_instagram">
+    <div class="social-contact_header">
+      <p>Follow Accountstar on Instagram</p>
+      <a href="https://www.instagram.com/accountstar/" target="_blank" rel="noreferrer">@accountstar</a>
+    </div>
+    <iframe
+      title="Accountstar Instagram posts"
+      src="https://cdn.lightwidget.com/widgets/173e16d82e785e629bccf231770aa728.html"
+      scrolling="no"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <div class="social-contact_main">
+    <div class="social-contact_copy">
+      <span class="section_rule" aria-hidden="true"></span>
+      <h2>Get in touch with us.</h2>
+      <p>{MISSION}</p>
+      <div class="social-contact_links">
+        <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer">WhatsApp us</a>
+        <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+      </div>
+    </div>
+    <div class="social-contact_calendly">
+      <iframe
+        title="Book a free 15-minute chat with Accountstar"
+        src="https://calendly.com/stella_e/15min?embed_domain=127.0.0.1&embed_type=Inline&hide_gdpr_banner=1"
+        loading="lazy"
+      ></iframe>
+      <a class="social-contact_fallback" href={CONTACT.calendly} target="_blank" rel="noreferrer">Open booking calendar</a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  @layer components {
+    .social-contact_wrap { background: white; }
+    .social-contact_instagram { padding: var(--section-space-small) var(--site-margin); border-bottom: 1px solid #eee; }
+    .social-contact_header { display: flex; max-width: var(--max-width-main); margin: 0 auto 1.5rem; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+    .social-contact_header p { font-weight: 700; }
+    .social-contact_header a { color: var(--brand-500); font-weight: 700; }
+    .social-contact_instagram iframe { display: block; width: 100%; max-width: var(--max-width-main); height: clamp(8rem, 17vw, 14rem); margin-inline: auto; border: 0; overflow: hidden; }
+
+    .social-contact_main {
+      display: grid;
+      max-width: var(--max-width-main);
+      margin-inline: auto;
+      padding: var(--section-space-medium) var(--site-margin);
+      gap: clamp(3rem, 8vw, 7rem);
+      align-items: center;
+    }
+    .social-contact_copy { display: flex; flex-direction: column; align-items: flex-start; }
+    .social-contact_copy h2 { max-width: 8em; font-weight: 500; }
+    .social-contact_copy p { max-width: 38rem; margin-top: 1.5rem; color: var(--dark-700); }
+    .social-contact_links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .social-contact_links a,
+    .social-contact_fallback { padding: .85rem 1.35rem; border-radius: 999px; background: var(--brand-500); color: white; font-weight: 600; }
+    .social-contact_links a + a { background: transparent; color: var(--brand-500); border: 1px solid var(--brand-500); }
+    .social-contact_calendly { min-height: 40rem; overflow: hidden; border: 1px solid #eee; background: var(--light-200); }
+    .social-contact_calendly iframe { width: 100%; min-height: 40rem; border: 0; }
+    .social-contact_fallback { display: none; margin: 1rem; text-align: center; }
+    @media (width >= 64rem) {
+      .social-contact_main { grid-template-columns: minmax(0, .8fr) minmax(30rem, 1fr); }
+    }
+  }
+</style>

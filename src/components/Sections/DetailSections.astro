@@ -1,0 +1,166 @@
+---
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import type { ContentBlock, Offering } from "@/data/site.ts";
+
+interface Props {
+  render?: boolean;
+  blocks: ContentBlock[];
+  offeringTitle: string;
+  offeringIntro: string;
+  offerings: Offering[];
+}
+
+const {
+  render = true,
+  blocks,
+  offeringTitle,
+  offeringIntro,
+  offerings,
+} = Astro.props;
+---
+
+{
+  render && (
+    <div class="detail-sections_wrap">
+      <Section paddingTop="small" paddingBottom="small">
+        <div class="detail-sections_list">
+          {blocks.map((block, index) => (
+            <ContentWrapper
+              variant="columns"
+              reverse={index % 2 === 1}
+              class="detail-sections_block"
+            >
+              <div>
+                <Eyebrow>0{index + 1}</Eyebrow>
+                <Heading tag="h2" variant="h3" maxWidth={18}>
+                  {block.title}
+                </Heading>
+              </div>
+              <div slot="column2" class="detail-sections_copy">
+                {block.paragraphs.map((paragraph) => (
+                  <Paragraph>{paragraph}</Paragraph>
+                ))}
+                {block.items && (
+                  <ul class="detail-sections_bullets text-style-main">
+                    {block.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </ContentWrapper>
+          ))}
+        </div>
+      </Section>
+      <Section theme="dark" class="detail-offerings_wrap">
+        <ContentWrapper variant="auto-width">
+          <div>
+            <Eyebrow>What's included</Eyebrow>
+            <Heading tag="h2" variant="h2" maxWidth={16}>
+              {offeringTitle}
+            </Heading>
+          </div>
+          <Paragraph slot="column2" maxWidth={42}>
+            {offeringIntro}
+          </Paragraph>
+        </ContentWrapper>
+        <Grid small={2} large={offerings.length === 3 ? 3 : 2}>
+          {offerings.map((offering, index) => (
+            <article class="detail-offerings_card">
+              <span class="detail-offerings_number text-style-small">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <Heading tag="h3" variant="h5">
+                {offering.name}
+              </Heading>
+              <Paragraph>{offering.intro}</Paragraph>
+              {offering.items && (
+                <ul class="detail-offerings_list text-style-small">
+                  {offering.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </Grid>
+      </Section>
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .detail-sections_list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-space-small);
+      width: 100%;
+    }
+
+    .detail-sections_block {
+      padding-block: var(--section-space-small);
+      border-top: var(--border-width) solid var(--border);
+    }
+
+    .detail-sections_copy {
+      gap: var(--space-4);
+    }
+
+    .detail-sections_bullets,
+    .detail-offerings_list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+
+      & li {
+        position: relative;
+        padding-left: 1.5em;
+      }
+
+      & li::before {
+        content: "";
+        position: absolute;
+        top: 0.65em;
+        left: 0;
+        width: 0.45em;
+        height: 0.45em;
+        border-radius: var(--radius-round);
+        background-color: var(--brand-500);
+      }
+    }
+
+    .detail-offerings_card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-6);
+      background: linear-gradient(145deg, var(--dark-800), var(--dark-900));
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-main);
+    }
+
+    .detail-offerings_number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      color: var(--brand-text);
+      background-color: var(--brand-500);
+      border-radius: var(--radius-round);
+    }
+
+    .detail-offerings_list {
+      margin-top: var(--space-3);
+      padding-top: var(--space-4);
+      color: var(--text-2);
+      border-top: var(--border-width) solid var(--border);
+    }
+  }
+</style>

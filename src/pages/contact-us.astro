@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/Sections/PageHero.astro";
+import ContactOptions from "@/components/Sections/ContactOptions.astro";
+import { CONTACT } from "@/data/site.ts";
+---
+
+<Layout
+  title="Contact"
+  description="Contact Accountstar for friendly, professional accounting and tax support."
+>
+  <PageHero
+    eyebrow="Get in touch"
+    title="Let's talk about what you need"
+    description="Choose the contact option that suits you. Tell us a little about your business, organisation or event and we will help you find the right next step."
+    primaryLabel="Book a free chat"
+    primaryHref={CONTACT.calendly}
+    secondaryLabel="Email us"
+    secondaryHref={CONTACT.emailHref}
+  />
+  <ContactOptions />
+</Layout>

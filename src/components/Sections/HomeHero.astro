@@ -1,0 +1,92 @@
+---
+import Img from "@/components/Media/Img.astro";
+import stellaHero from "@/assets/images/stella-hero.jpg";
+import { CONTACT } from "@/data/site.ts";
+
+interface Props { render?: boolean; }
+const { render = true } = Astro.props;
+---
+
+{render && (
+  <section class="home-hero_wrap">
+    <div class="home-hero_copy">
+      <span class="home-hero_rule" aria-hidden="true"></span>
+      <h1>Helping you take control of your business finances and taxes</h1>
+      <p>Professional and affordable accounting and tax services.</p>
+      <div class="home-hero_actions">
+        <a class="home-hero_button primary" href="/services">Accounting Services</a>
+        <a class="home-hero_button secondary" href={CONTACT.calendly} target="_blank" rel="noreferrer">Free Chat</a>
+      </div>
+    </div>
+    <div class="home-hero_visual">
+      <Img
+        src={stellaHero}
+        alt="Stella Ezeogu, founder of Accountstar"
+        width={1400}
+        height={1500}
+        loading="eager"
+        fetchPriority="high"
+      />
+      <a class="home-hero_contact" href="/contact-us">Contact</a>
+    </div>
+  </section>
+)}
+
+<style is:global>
+  @layer components {
+    .home-hero_wrap {
+      display: grid;
+      min-height: min(46rem, calc(100svh - var(--nav-height)));
+      background: white;
+    }
+
+    .home-hero_copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: clamp(4rem, 8vw, 8rem) var(--site-margin);
+    }
+
+    .home-hero_rule { width: 4.5rem; height: .28rem; margin-bottom: 2rem; background: var(--brand-500); }
+    .home-hero_copy h1 { max-width: 10.5em; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.07; font-weight: 600; }
+    .home-hero_copy p { max-width: 31rem; margin-top: 1.5rem; color: var(--dark-700); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+
+    .home-hero_actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+    .home-hero_button {
+      display: inline-flex;
+      min-width: 10.5rem;
+      justify-content: center;
+      padding: 1rem 1.6rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: white;
+      font-weight: 600;
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .home-hero_button:hover { transform: translateY(-2px); filter: brightness(.95); }
+    .home-hero_button.primary { background: var(--brand-500); }
+    .home-hero_button.secondary { background: var(--gold-400); }
+
+    .home-hero_visual { position: relative; min-height: 34rem; overflow: hidden; }
+    .home-hero_visual .image { position: absolute; inset: 0; width: 100%; height: 100%; object-position: center 23%; }
+    .home-hero_contact {
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      bottom: clamp(1rem, 4vw, 3rem);
+      display: inline-flex;
+      padding: .9rem 1.7rem;
+      border-radius: 999px;
+      background: var(--gold-400);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 .7rem 2rem rgb(31 27 34 / 20%);
+    }
+
+    @media (width >= 64rem) {
+      .home-hero_wrap { grid-template-columns: 1fr 1fr; }
+      .home-hero_copy { padding-left: max(var(--site-margin), calc((100vw - var(--max-width-main)) / 2)); padding-right: clamp(3rem, 6vw, 7rem); }
+      .home-hero_visual { min-height: 46rem; }
+    }
+  }
+</style>
