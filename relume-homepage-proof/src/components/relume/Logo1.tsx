@@ -23,14 +23,18 @@ export const Logo1 = (props: Logo1Props) => {
         <h2 className="mx-auto mb-6 w-full max-w-lg text-center text-h6 font-bold md:mb-8">
           {heading}
         </h2>
-        <div className="grid grid-cols-2 items-center justify-items-center gap-x-10 gap-y-8 pt-4 pb-2 md:grid-cols-4 md:gap-x-12 md:pt-2">
+        <div className="grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-8 pt-4 pb-2 md:grid-cols-4 md:gap-x-10 md:pt-2">
           {logos.map((logo, index) => (
-            <img
+            <div
               key={index}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-16 w-auto max-w-[11rem] object-contain md:h-24 md:max-w-[14rem]"
-            />
+              className="flex h-24 w-40 items-center justify-center md:h-28 md:w-44"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
