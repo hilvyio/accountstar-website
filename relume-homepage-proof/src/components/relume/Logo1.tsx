@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 type ImageProps = {
   src: string;
   alt?: string;
+  className?: string;
 };
 
 type Props = {
@@ -27,12 +28,12 @@ export const Logo1 = (props: Logo1Props) => {
           {logos.map((logo, index) => (
             <div
               key={index}
-              className="flex h-24 w-40 items-center justify-center md:h-28 md:w-44"
+              className="flex h-28 w-44 items-center justify-center md:h-32 md:w-52"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="max-h-full max-w-full object-contain"
+                className={["object-contain", logo.className ?? "h-16 max-w-[11rem]"].join(" ")}
               />
             </div>
           ))}

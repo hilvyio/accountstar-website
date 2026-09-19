@@ -28,10 +28,14 @@ export function HomePage() {
       <Logo1
         heading="Currently working with"
         logos={[
-          { src: "/images/client-gym-kitchen.png", alt: "Gym Kitchen" },
-          { src: "/images/client-kessies.jpg", alt: "Kessies Consulting" },
-          { src: "/images/client-socially-inspired.png", alt: "Socially Inspired" },
-          { src: "/images/client-stn.png", alt: "STN" },
+          { src: "/images/client-gym-kitchen.png", alt: "Gym Kitchen", className: "h-14 max-w-[10rem]" },
+          { src: "/images/client-kessies.jpg", alt: "Kessies Consulting", className: "h-28 max-w-[11rem]" },
+          {
+            src: "/images/client-socially-inspired.png",
+            alt: "Socially Inspired",
+            className: "h-16 max-w-[12rem]",
+          },
+          { src: "/images/client-stn.png", alt: "STN", className: "h-12 max-w-[12rem]" },
         ]}
       />
       <Layout620
