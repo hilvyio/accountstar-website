@@ -51,3 +51,45 @@ footer h5,
 footer h6 {
   color: #ffffff;
 }
+
+@media (max-width: 767px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .text-h1 {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .text-h2 {
+    font-size: 1.65rem;
+    line-height: 1.18;
+  }
+
+  .text-h3 {
+    font-size: 1.42rem;
+    line-height: 1.2;
+  }
+
+  .text-h4 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .text-h5 {
+    font-size: 1.12rem;
+    line-height: 1.3;
+  }
+
+  .text-h6 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .text-large,
+  .text-medium {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}

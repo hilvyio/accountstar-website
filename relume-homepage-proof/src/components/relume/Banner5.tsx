@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type ComponentPropsWithoutRef } from "react";
-import { Card } from "@/components/ui/card";
 import { Close } from "relume-icons";
 
 type Props = {
@@ -28,21 +27,24 @@ export const Banner5 = (props: Banner5Props) => {
   }
 
   return (
-    <section className="px-[5%] py-2 bg-brand-500 text-white">
-      <Card className="container relative flex items-center justify-start border-0 bg-transparent py-2 pl-4 pr-2 text-white md:px-4">
-        <div className="mr-4 flex-1 md:ml-12 md:mr-0 md:text-center">
-          <span>
-            {headingStart}{" "}
-            <a href={link.url} className="font-semibold underline">
-              {link.title}
-            </a>{" "}
-            {headingEnd}
-          </span>
-        </div>
-        <button className="md:ml-4" type="button" aria-label="Dismiss" onClick={() => setIsVisible(false)}>
-          <Close className="size-8 p-1" />
+    <section className="bg-brand-500 px-3 py-1.5 text-white md:px-[5%]">
+      <div className="container flex items-center gap-2 text-[0.7rem] leading-snug md:justify-center md:text-small md:leading-normal">
+        <p className="min-w-0 flex-1 text-center">
+          {headingStart}{" "}
+          <a href={link.url} className="font-semibold underline">
+            {link.title}
+          </a>
+          {headingEnd ? ` ${headingEnd}` : null}
+        </p>
+        <button
+          className="shrink-0 rounded-full p-0.5"
+          type="button"
+          aria-label="Dismiss"
+          onClick={() => setIsVisible(false)}
+        >
+          <Close className="size-3.5 md:size-4" />
         </button>
-      </Card>
+      </div>
     </section>
   );
 };

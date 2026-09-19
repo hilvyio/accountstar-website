@@ -36,7 +36,7 @@ export function SiteChrome({ children }: Props) {
     <div className="min-h-svh overflow-x-hidden bg-white text-scheme-text">
       <div className="sticky top-0 z-[1000] bg-white">
       <Banner5
-        headingStart="We are currently not accepting new clients, but will reopen soon."
+        headingStart="Not accepting new clients right now."
         link={{ url: WAITLIST, title: "Email us to join the waitlist" }}
         headingEnd=""
       />
